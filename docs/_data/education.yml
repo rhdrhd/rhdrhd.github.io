@@ -1,13 +1,20 @@
+# use "" to escape special symbols
 # Degree
-- degree: Bachelor of Arts, Human Rights
-  uni: Yale University
-  year: 2004 &mdash; 2008
+- degree: MSc Integrated Machine Learning System
+  uni: University College London
+  year: 2023 &mdash; Present
+  award: Related Projects
   awards:
-    - award: Summa Cumme Laude graduate
-  summary: If you had any meaningful roles at college, feel free to write about them here
+    - award: "Bring Personas to Live Using LLM"
+    - award: "Recursive Stock Predicting Using LSTM"
+  summary: "Modules: Applied Machine Learning Systems, Deep Learning for Natural Language Processing, Data Acquisition and Processing Systems, Cloud, Data Centres and Edge Computing, Security and Privacy, Emerging Topics in Integrated Machine Learning Systems"
 
-- degree: High School Diploma
-  uni: Springfield High School
-  year: 2004
-  award: Most likely to succeed
-  summary: You can choose to have either a single or multiple awards
+
+# award is different from awards
+- degree: BEng Computer Science & Electronic Engineering
+  uni: University of Liverpool
+  year: 2020 &mdash; 2023
+  award: First Class Bachelor of Engineering
+  summary: "Modules: Application Development With C++, Neural Networks, Biocomputation, Technologies For
+E-Commerce, Multi-Agent Systems, Software Engineering, Database Development, Distributed Systems, Signals and Systems, Communication Systems, Digital Electronics and Microprocessor Systems"
+
