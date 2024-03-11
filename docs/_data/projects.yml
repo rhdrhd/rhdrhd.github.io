@@ -4,15 +4,26 @@
 # Springfield Community Outreach Group
 - project: Bring Personas to Live Using LLM 
   # role: Co-Founder & Organizer
-  duration: 2024 &mdash; Present
+  duration: Mar 2024 &mdash; Present
   # url: "#"
   description: SCOG is a local monthly meetup in Springfield where we share opportunities to volunteer in the community and organize support for families and neighborhoods in need of assistance that the community can provide.
 
 # jazznotes.io
 - project: Recursive Stock Prediction Model with LSTM
   # role: Founder & Primary Developer
-  duration: 2012 &mdash; Present
+  duration: Nov 2023 &mdash; Jan 2024
   # url: "#"
-  description: Jazz Notes is an open source node/ember app that helps you keep track of your music compositions and new ideas.
+  description: Developed a machine learning model to predict future stock prices, leading to strategic investment recommendations on when to buy, hold, or sell the stock.
 
+# jazznotes.io
+- project: Scientific Data Compression Using VAE
+  # role: Founder & Primary Developer
+  duration: Oct 2022 &mdash; Jun 2024
+  # url: "#"
+  description: Conducted a comprehensive study on adapting image compression autoencoders for scientific data compression, addressing the challenges in high-volume floating-point data management in scientific simulations.
 
+- project: Lithium Battery Life Estimator
+  # role: Founder & Primary Developer
+  duration: Feb 2022 &mdash; April 2024
+  # url: "#"
+  description: Developed an LSTM (Long Short-Term Memory) neural network model to accurately predict the lifespan and performance of lithium batteries, leveraging time-series data for enhanced predictive accuracy.
