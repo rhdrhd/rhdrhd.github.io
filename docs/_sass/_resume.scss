@@ -20,6 +20,20 @@
 
 .page-header { padding: 1.5rem 0;
 
+  @include media_min(900px) {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+      "avatar name"
+      "avatar contact"
+      "avatar contactinfo"
+      "avatar title"
+      "avatar summary";
+    column-gap: 2.5rem;
+    align-items: start;
+    padding: 2rem 0 1.5rem;
+  }
+
   .avatar {
     width: 95px;
     max-width: 100%;
@@ -27,6 +41,12 @@
     @include border-radius(23%);
     margin: 0 auto;
     display: block;
+
+    @include media_min(900px) {
+      width: 140px;
+      margin: 0;
+      grid-area: avatar;
+    }
   }
 
   // Name
@@ -38,6 +58,14 @@
     letter-spacing: -.15rem;
     line-height: 1;
     margin: 1rem 0 0;
+
+    @include media_min(900px) {
+      grid-area: name;
+      font-size: 3.5rem;
+      text-align: left;
+      margin-top: 0;
+      line-height: 1.1;
+    }
   }
 
   .contact-button {
@@ -53,18 +81,30 @@
     color: #333;
     line-height: 30px;
     @include transition(all .2s ease);
-  
+
     &:hover {
       background-color: #333;
       color: #fff;
     }
-  
+
     &.not-looking { width: 400px; }
+
+    @include media_min(900px) {
+      grid-area: contact;
+      justify-self: start;
+      margin: 0 0 .35rem;
+    }
   }
-  
+
   .header-contact-info {
     @include sans;
     text-align: center;
+
+    @include media_min(900px) {
+      grid-area: contactinfo;
+      text-align: left;
+      margin: 0;
+    }
   }
   .header-contact-info p a {
     color: inherit;
@@ -89,11 +129,34 @@
         float: left;
         margin: 0;
       }
+
+      @include media_min(900px) {
+        float: none;
+        text-align: left;
+      }
+    }
+
+    @include media_min(900px) {
+      grid-area: title;
+      margin-top: .5rem;
+      border-top: none;
+      border-bottom: none;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 
   .executive-summary {
     @include media_larger_than_mobile { font-size: 1.125rem; }
+
+    @include media_min(900px) {
+      grid-area: summary;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-align: left;
+    }
   }
 }
 
@@ -111,6 +174,14 @@
     float: right;
     border-top: none;
     padding-top: 0;
+  }
+
+  @include media_min(900px) {
+    float: none;
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+    position: static;
   }
 
   .icon-link-item {
@@ -139,6 +210,26 @@
   margin: 0 0 3rem;
 
   .resume-item { margin-bottom: 2rem; }
+
+  @include media_min(900px) {
+    .resume-item {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      column-gap: 2rem;
+      align-items: start;
+
+      .resume-item-title,
+      .resume-item-details {
+        grid-column: 1;
+        text-align: left;
+      }
+
+      .resume-item-copy {
+        grid-column: 2;
+        margin-top: 0;
+      }
+    }
+  }
 
   .resume-item-title {
     @include sans_bold;
