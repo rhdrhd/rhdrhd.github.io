@@ -270,6 +270,68 @@
   .resume-item-copy { margin: .75rem 0 0; }
 }
 
+.resume-item.education-card {
+  border: 2px solid #dcdcdc;
+  @include border-radius(20px);
+  padding: 1.25rem 1.5rem 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+
+  @include media_min(900px) {
+    display: block;
+  }
+
+  .resume-item-title {
+    margin: 0 0 .35rem;
+  }
+
+  .resume-item-details {
+    margin: 0;
+  }
+
+  .education-card__header {
+    display: flex;
+    flex-direction: column;
+    gap: .85rem;
+    margin-bottom: 1rem;
+
+    @include media_min(700px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .education-card__school {
+    flex: 1;
+  }
+
+  .education-card__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .1rem;
+
+    @include media_min(700px) {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .education-card__degree {
+    font-weight: 500;
+  }
+
+  .education-card__year {
+    font-size: 1rem;
+    color: #6c6c6c;
+  }
+
+  .education-card__projects {
+    margin: 0 0 1rem 1rem;
+  }
+}
+
 // footer styles
 
 .page-footer {
