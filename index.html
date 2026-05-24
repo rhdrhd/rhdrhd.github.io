@@ -1,7 +1,31 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-author_profile: true
+layout: splash
+title: "Hi, I’m Zirui Wang"
+author_profile: false
+header:
+  overlay_color: "#1f2933"
+  overlay_filter: "0.40"
+  caption: "Personal background, projects, and writing"
+excerpt: "I build software, document what I learn, and share useful ideas."
+intro:
+  - excerpt: 'If this is your first time here, start with my <a href="/background/">background</a> and <a href="/projects/">projects</a>.'
+feature_row:
+  - title: "Background"
+    excerpt: "My journey, strengths, and what I’m currently focused on."
+    url: "/background/"
+    btn_label: "Read"
+    btn_class: "btn--primary"
+  - title: "Projects"
+    excerpt: "A curated list of practical work, with impact and lessons learned."
+    url: "/projects/"
+    btn_label: "Explore"
+    btn_class: "btn--primary"
+  - title: "Blog"
+    excerpt: "Posts on engineering, product thinking, and career growth."
+    url: "/blog/"
+    btn_label: "Browse"
+    btn_class: "btn--primary"
 ---
+
+{% include feature_row id="intro" type="center" %}
+{% include feature_row %}
