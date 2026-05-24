@@ -1,0 +1,26 @@
+---
+---
+
+@import "minimal-mistakes";
+
+.page__hero--overlay {
+  min-height: 18rem;
+}
+
+.archive__item-title,
+.page__title,
+.author__name {
+  letter-spacing: 0.2px;
+}
+
+.masthead {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.btn--primary {
+  background-color: #3f5c77;
+}
+
+.btn--primary:hover {
+  background-color: #2f4a62;
+}
