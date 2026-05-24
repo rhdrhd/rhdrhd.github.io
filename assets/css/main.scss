@@ -3,24 +3,180 @@
 
 @import "minimal-mistakes";
 
-.page__hero--overlay {
-  min-height: 18rem;
+/* ── Warm neutral palette ── */
+
+:root {
+  --bg: #faf8f5;
+  --text: #2c2c2c;
+  --text-light: #6b6b6b;
+  --accent: #8c7a6b;
+  --border: #e8e4df;
 }
 
-.archive__item-title,
-.page__title,
-.author__name {
-  letter-spacing: 0.2px;
+body {
+  background-color: var(--bg);
+  color: var(--text);
 }
+
+/* ── Typography ── */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  font-weight: 600;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+/* ── Navigation ── */
 
 .masthead {
-  border-bottom: 1px solid #e8e8e8;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
 }
 
+.greedy-nav {
+  background: var(--bg);
+}
+
+.greedy-nav a {
+  color: var(--text-light);
+}
+
+.greedy-nav a:hover {
+  color: var(--text);
+}
+
+.greedy-nav .visible-links a:before {
+  background: var(--accent);
+}
+
+.site__title {
+  font-weight: 600;
+}
+
+/* ── Homepage ── */
+
+.homepage .page__content {
+  padding-top: 4rem;
+}
+
+.home-intro {
+  max-width: 520px;
+}
+
+.home-name {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.5px;
+}
+
+.home-tagline {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.home-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.home-links a {
+  color: var(--accent);
+  font-size: 0.95rem;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.home-links a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* ── Pages ── */
+
+.page__title {
+  font-size: 1.6rem;
+  letter-spacing: -0.3px;
+}
+
+.page__content {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.page__content p {
+  margin-bottom: 1.25rem;
+}
+
+/* ── Posts list ── */
+
+.archive__item-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.archive__item-title a {
+  color: var(--text);
+}
+
+.archive__item-title a:hover {
+  color: var(--accent);
+}
+
+.archive__item-excerpt {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+/* ── Footer ── */
+
+.page__footer {
+  background-color: var(--bg);
+  border-top: 1px solid var(--border);
+  color: var(--text-light);
+}
+
+.page__footer a {
+  color: var(--text-light);
+}
+
+.page__footer-follow li {
+  font-size: 0.85rem;
+}
+
+/* ── Buttons ── */
+
 .btn--primary {
-  background-color: #3f5c77;
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
 
 .btn--primary:hover {
-  background-color: #2f4a62;
+  background-color: var(--text);
+  border-color: var(--text);
+}
+
+/* ── Misc cleanup ── */
+
+.page__hero--overlay {
+  display: none;
+}
+
+hr {
+  border-color: var(--border);
+}
+
+blockquote {
+  border-left-color: var(--border);
+  color: var(--text-light);
 }
