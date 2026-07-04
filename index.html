@@ -1,31 +1,229 @@
----
-layout: splash
-title: "Hi, I’m Zirui Wang"
-author_profile: false
-header:
-  overlay_color: "#1f2933"
-  overlay_filter: "0.40"
-  caption: "Personal background, projects, and writing"
-excerpt: "I build software, document what I learn, and share useful ideas."
-intro:
-  - excerpt: 'If this is your first time here, start with my <a href="/background/">background</a> and <a href="/projects/">projects</a>.'
-feature_row:
-  - title: "Background"
-    excerpt: "My journey, strengths, and what I’m currently focused on."
-    url: "/background/"
-    btn_label: "Read"
-    btn_class: "btn--primary"
-  - title: "Projects"
-    excerpt: "A curated list of practical work, with impact and lessons learned."
-    url: "/projects/"
-    btn_label: "Explore"
-    btn_class: "btn--primary"
-  - title: "Blog"
-    excerpt: "Posts on engineering, product thinking, and career growth."
-    url: "/blog/"
-    btn_label: "Browse"
-    btn_class: "btn--primary"
----
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zirui Wang — AI infrastructure &amp; agentic systems</title>
+  <meta name="description" content="Zirui Wang builds inference systems and studies how meaning assembles from discrete parts — tokens, caches, dots of paint. AI infrastructure and agentic systems, Edinburgh.">
+  <link rel="canonical" href="https://rhdrhd.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Zirui Wang — AI infrastructure &amp; agentic systems">
+  <meta property="og:description" content="Inference systems, agentic serving, and how meaning assembles from discrete parts. Light the bonfire.">
+  <meta property="og:url" content="https://rhdrhd.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='32' cy='38' r='16' fill='%234E7FA6'/%3E%3Ccircle cx='63' cy='31' r='13' fill='%238FAE7E'/%3E%3Ccircle cx='52' cy='63' r='15' fill='%236FA294'/%3E%3Ccircle cx='75' cy='58' r='10' fill='%236D9BC3'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#F2F5F3">
+  <script>
+    (function () {
+      var m = 'light';
+      try {
+        m = localStorage.getItem('mode') ||
+          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } catch (e) {}
+      document.documentElement.dataset.mode = m;
+      if (m === 'dark') {
+        var t = document.querySelector('meta[name="theme-color"]');
+        if (t) t.content = '#14110D';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <canvas id="fx-canvas" aria-hidden="true"></canvas>
 
-{% include feature_row id="intro" type="center" %}
-{% include feature_row %}
+  <header class="nav">
+    <a class="monogram serif" href="#top" aria-label="Zirui Wang — home">Z·W</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+      <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle between gallery and bonfire themes">
+        <svg class="icon flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"/></svg>
+        <span class="toggle-label" data-light="Light the bonfire" data-dark="Return to the gallery">Light the bonfire</span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero">
+      <h1 class="sr-only">Zirui Wang</h1>
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <p class="hero-tag mono" data-light="AI infrastructure · agentic systems · Edinburgh" data-dark="The flame of inference is kindled">AI infrastructure · agentic systems · Edinburgh</p>
+      <p class="hero-sub serif" data-light="I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, dots of paint." data-dark="Keeper of the serving stack. What is generation, if not memory rekindled — one token at a time?">I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, dots of paint.</p>
+      <button id="scroll-cue" class="cue" type="button" aria-label="Scroll to content">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6l6 -6"/></svg>
+      </button>
+    </section>
+
+    <svg class="divider" style="--from:var(--bg);--to:var(--wash1)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 38 C 130 18, 300 52, 460 30 S 760 46, 940 24 S 1240 44, 1440 20 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="currently" class="wash1">
+      <div class="container">
+        <h2 class="slab mono" data-light="Currently" data-dark="The present age">Currently</h2>
+        <p class="lede">Researching runtime scheduling for agentic LLM workloads on vLLM-Ascend at Huawei R&amp;D UK — how concurrent coding agents, RL rollouts, and Best-of-N swarms should share an inference cluster. On the side: essays on the systems layer of AI.</p>
+      </div>
+    </section>
+
+    <svg class="divider" style="--from:var(--wash1);--to:var(--bg)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C 170 44, 320 12, 520 32 S 820 16, 1000 38 S 1280 20, 1440 34 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="slab mono" data-light="Experience" data-dark="The journey">Experience</h2>
+        <div class="timeline">
+          <article class="entry reveal" style="--dot:#4E7FA6">
+            <div class="entry-head">
+              <h3 class="serif">System AI Research Engineer</h3>
+              <span class="mono when">Oct 2025 — present</span>
+            </div>
+            <p class="where">Huawei Technologies R&amp;D (UK) · Edinburgh</p>
+            <p class="what">Delay-aware scheduling for concurrent coding agents — lifting prefix-cache hit rate from 56% to 72% and halving queue wait. Built a cross-layer observability stack (OpenTelemetry, Prometheus) unifying agent, serving, and NPU telemetry on one timeline.</p>
+          </article>
+          <article class="entry reveal" style="--dot:#8FAE7E">
+            <div class="entry-head">
+              <h3 class="serif">Technical Insight Analyst</h3>
+              <span class="mono when">Nov 2024 — Oct 2025</span>
+            </div>
+            <p class="where">Huawei Technologies R&amp;D (UK) · Edinburgh</p>
+            <p class="what">Comparative evaluation of LLM inference across Cerebras wafer-scale, NVIDIA, and Ascend architectures; helped pivot the team toward agentic serving. Initiated an agentic AI hackathon with the University of Edinburgh — 100+ participants.</p>
+          </article>
+          <article class="entry reveal" style="--dot:#6FA294">
+            <div class="entry-head">
+              <h3 class="serif">MSc Integrated Machine Learning Systems</h3>
+              <span class="mono when">2023 — 2024</span>
+            </div>
+            <p class="where">University College London · Distinction</p>
+          </article>
+          <article class="entry reveal" style="--dot:#52708C">
+            <div class="entry-head">
+              <h3 class="serif">BEng Computer Science &amp; Electronic Engineering</h3>
+              <span class="mono when">2020 — 2023</span>
+            </div>
+            <p class="where">University of Liverpool · First Class Honours</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <svg class="divider" style="--from:var(--bg);--to:var(--wash2)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 32 C 150 10, 340 48, 540 26 S 860 44, 1060 22 S 1300 40, 1440 26 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="work" class="wash2">
+      <div class="container">
+        <h2 class="slab mono" data-light="Selected work" data-dark="Relics">Selected work</h2>
+        <div class="cards">
+          <article class="card reveal">
+            <h3 class="serif">Delay-aware sub-batch scheduling</h3>
+            <p data-light="Runtime scheduling for vLLM-Ascend serving concurrent coding agents — staggers bursts, packs sub-batches by delay tolerance. Prefix-cache hit rate 56→72%, queue wait halved." data-dark="A scheduling rite of curious design. It delays the eager and staggers the burst; those who waited found their queues halved, and the cache remembered what it had once forgot.">Runtime scheduling for vLLM-Ascend serving concurrent coding agents — staggers bursts, packs sub-batches by delay tolerance. Prefix-cache hit rate 56→72%, queue wait halved.</p>
+          </article>
+          <article class="card reveal">
+            <h3 class="serif">Cross-layer observability for agentic serving</h3>
+            <p data-light="OpenTelemetry and Prometheus with custom span converters and Gantt exporters — agent, serving, and NPU telemetry unified on a single timeline." data-dark="An eye that sees across three worlds at once — agent, server, and silicon. No cycle is spent unwitnessed.">OpenTelemetry and Prometheus with custom span converters and Gantt exporters — agent, serving, and NPU telemetry unified on a single timeline.</p>
+          </article>
+          <article class="card reveal">
+            <h3 class="serif">Implicit persona dialogue generation</h3>
+            <p data-light="In-context pipeline that infers persona from dialogue history alone — no predefined profiles. Outperformed most implicit- and explicit-persona systems on fluency and diversity." data-dark="It listens, and from listening alone divines the nature of the speaker. No profile written; none needed.">In-context pipeline that infers persona from dialogue history alone — no predefined profiles. Outperformed most implicit- and explicit-persona systems on fluency and diversity.</p>
+          </article>
+          <article class="card reveal">
+            <h3 class="serif">Seismic data compression with VAEs</h3>
+            <p data-light="Scale-hyperprior VAE for lossy compression of 3D seismic waveforms, reaching low-bitrate operating points unreachable by the ZFP baseline." data-dark="The weight of the earth's echoes, folded small. What the old codec could not carry, this one bears.">Scale-hyperprior VAE for lossy compression of 3D seismic waveforms, reaching low-bitrate operating points unreachable by the ZFP baseline.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <svg class="divider" style="--from:var(--wash2);--to:var(--bg)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C 170 44, 320 12, 520 32 S 820 16, 1000 38 S 1280 20, 1440 34 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="writing">
+      <div class="container">
+        <h2 class="slab mono" data-light="Writing" data-dark="Scrolls">Writing</h2>
+        <div class="posts">
+          <article class="post reveal">
+            <div>
+              <h3 class="serif">Prometheus brings fire</h3>
+              <p>Open-source model democratization versus the concentration of compute.</p>
+            </div>
+            <span class="mono when">2025</span>
+          </article>
+          <article class="post reveal">
+            <div>
+              <h3 class="serif">The gallery and the bonfire</h3>
+              <p>Design notes for this site — pointillism, tokens, and two moods.</p>
+            </div>
+            <span class="mono when">2026</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <svg class="divider" style="--from:var(--bg);--to:var(--wash3)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 38 C 130 18, 300 52, 460 30 S 760 46, 940 24 S 1240 44, 1440 20 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="skills" class="wash3">
+      <div class="container">
+        <h2 class="slab mono" data-light="Skills" data-dark="Attunement">Skills</h2>
+        <div class="skill-rows">
+          <div class="skill-row reveal">
+            <span class="mono skill-key">inference</span>
+            <span class="pill"><span class="pd" style="background:#4E7FA6"></span>vLLM · vLLM-Ascend</span>
+            <span class="pill"><span class="pd" style="background:#6D9BC3"></span>prefix caching</span>
+            <span class="pill"><span class="pd" style="background:#8FAE7E"></span>KV-cache management</span>
+            <span class="pill"><span class="pd" style="background:#52708C"></span>batching</span>
+          </div>
+          <div class="skill-row reveal">
+            <span class="mono skill-key">agentic</span>
+            <span class="pill"><span class="pd" style="background:#6FA294"></span>CrewAI</span>
+            <span class="pill"><span class="pd" style="background:#4E7FA6"></span>orchestration</span>
+            <span class="pill"><span class="pd" style="background:#8FAE7E"></span>workload profiling</span>
+          </div>
+          <div class="skill-row reveal">
+            <span class="mono skill-key">hardware</span>
+            <span class="pill"><span class="pd" style="background:#52708C"></span>Ascend NPU · CANN</span>
+            <span class="pill"><span class="pd" style="background:#6D9BC3"></span>HBM &amp; interconnects</span>
+            <span class="pill"><span class="pd" style="background:#6FA294"></span>GPU · wafer-scale</span>
+          </div>
+          <div class="skill-row reveal">
+            <span class="mono skill-key">tooling</span>
+            <span class="pill"><span class="pd" style="background:#8FAE7E"></span>PyTorch</span>
+            <span class="pill"><span class="pd" style="background:#4E7FA6"></span>OpenTelemetry</span>
+            <span class="pill"><span class="pd" style="background:#52708C"></span>Prometheus</span>
+            <span class="pill"><span class="pd" style="background:#6D9BC3"></span>Kubernetes</span>
+            <span class="pill"><span class="pd" style="background:#6FA294"></span>Python · C++</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <svg class="divider" style="--from:var(--wash3);--to:var(--bg)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 32 C 150 10, 340 48, 540 26 S 860 44, 1060 22 S 1300 40, 1440 26 L 1440 60 L 0 60 Z"/></svg>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="slab mono" data-light="Contact" data-dark="Summon">Contact</h2>
+        <p class="contact-title serif" data-light="Let's talk" data-dark="Leave a summoning sign">Let's talk</p>
+        <p class="mono contact-mail"><a href="mailto:ziruiwang.work@gmail.com">ziruiwang.work@gmail.com</a></p>
+        <div class="contact-links">
+          <a class="pill" href="mailto:ziruiwang.work@gmail.com">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"/><path d="M3 7l9 6l9 -6"/></svg>
+            email
+          </a>
+          <a class="pill" href="https://www.linkedin.com/in/zirui-wang-348a80225/" rel="me noopener" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0 -4 0"/></svg>
+            LinkedIn
+          </a>
+          <a class="pill" href="https://github.com/rhdrhd" rel="me noopener" target="_blank">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p class="serif foot-line" data-light="Edinburgh · assembled from discrete parts · EN 中文 日本語" data-dark="Rest here, traveller. The site remembers your visit.">Edinburgh · assembled from discrete parts · EN 中文 日本語</p>
+    <p class="mono foot-copy">© 2026 Zirui Wang</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
