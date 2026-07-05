@@ -54,7 +54,7 @@
       'contact.label': { light: 'Contact', dark: 'Summon' },
       'contact.title': { light: "Let's talk", dark: 'Leave a summoning sign' },
       'contact.email': 'email',
-      'foot.line': { light: 'Edinburgh · assembled from discrete parts', dark: 'Rest here, traveller. The site remembers your visit.' },
+      'foot.line': { light: 'Edinburgh · accelerating into the future', dark: 'Rest here, traveller. The site remembers your visit.' },
     },
     'zh-CN': {
       'nav.work': '作品',
