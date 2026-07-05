@@ -142,7 +142,7 @@
       'contact.label': { light: '連絡', dark: '召喚' },
       'contact.title': { light: '話しましょう', dark: '召喚サインを残す' },
       'contact.email': 'メール',
-      'foot.line': { light: 'エディンバラ · 離散的な断片から組み上げられて', dark: '旅人よ、ここで休むがいい。この場所はあなたの訪れを憶えている。' },
+      'foot.line': { light: 'エディンバラ · 未来へ加速', dark: '旅人よ、ここで休むがいい。この場所はあなたの訪れを憶えている。' },
     },
   };
 
