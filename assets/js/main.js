@@ -17,7 +17,7 @@
       'nav.contact': 'Contact',
       'toggle': { light: 'Light the bonfire', dark: 'Return to the gallery' },
       'hero.tag': { light: 'AI infrastructure · agentic systems · Edinburgh', dark: 'The flame of inference is kindled' },
-      'hero.sub': { light: 'I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, dots of paint.', dark: 'Keeper of the serving stack. What is generation, if not memory rekindled — one token at a time?' },
+      'hero.sub': { light: 'I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, and traces of computation.', dark: 'Keeper of the serving stack. What is generation, if not memory rekindled — one token at a time?' },
       'now.label': { light: 'Currently', dark: 'The present age' },
       'now.text': 'Researching runtime scheduling for agentic LLM workloads on vLLM-Ascend at Huawei R&D UK — how concurrent coding agents, RL rollouts, and Best-of-N swarms should share an inference cluster. On the side: essays on the systems layer of AI.',
       'exp.label': { light: 'Experience', dark: 'The journey' },
