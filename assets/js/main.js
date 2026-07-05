@@ -288,25 +288,50 @@
 
   const pointer = { x: -1e4, y: -1e4, active: false };
 
+  let targetsBlocked = false;
+
+  function nameFont() {
+    return '700 ' + Math.min(W / 6.2, H * 0.52, 170) + 'px Georgia, "Times New Roman", serif';
+  }
+
   function buildTargets() {
+    targets = [];
+    targetsBlocked = false;
     const off = document.createElement('canvas');
     off.width = W;
     off.height = H;
     const o = off.getContext('2d');
-    const size = Math.min(W / 6.2, H * 0.52, 170);
     o.fillStyle = '#000';
-    o.font = '700 ' + size + 'px Georgia, "Times New Roman", serif';
+    o.font = nameFont();
     o.textAlign = 'center';
     o.textBaseline = 'middle';
     o.fillText('Zirui Wang', W / 2, H / 2);
-    const data = o.getImageData(0, 0, W, H).data;
-    targets = [];
+    let data;
+    try {
+      data = o.getImageData(0, 0, W, H).data;
+    } catch (err) {
+      targetsBlocked = true;
+      return;
+    }
     const step = W > 900 ? 4 : 3;
     for (let y = 0; y < H; y += step) {
       for (let x = 0; x < W; x += step) {
         if (data[(y * W + x) * 4 + 3] > 128 && Math.random() < 0.85) targets.push([x, y]);
       }
     }
+    if (!targets.length) targetsBlocked = true;
+  }
+
+  /* canvas pixel reads can be blocked (e.g. iOS Lockdown Mode) — paint the name plainly instead */
+  function drawNameFallback(alpha) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalAlpha = 0.92 * (alpha == null ? 1 : alpha);
+    ctx.fillStyle = PALETTES[mode][1];
+    ctx.font = nameFont();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Zirui Wang', W / 2, H / 2);
+    ctx.globalAlpha = 1;
   }
 
   function makeParticles() {
@@ -385,6 +410,7 @@
   });
 
   function drawStatic() {
+    if (targetsBlocked) { drawNameFallback(); return; }
     ctx.clearRect(0, 0, W, H);
     ctx.globalAlpha = 0.92;
     for (const p of particles) {
@@ -403,6 +429,12 @@
       return;
     }
     needsClear = true;
+
+    if (targetsBlocked) {
+      drawNameFallback(1 - dissolve);
+      requestAnimationFrame(tick);
+      return;
+    }
 
     ctx.clearRect(0, 0, W, H);
     const fade = 1 - dissolve;
@@ -675,11 +707,18 @@
 
   /* ———— layout & scroll ———— */
 
+  let lastW = 0;
+  let lastH = 0;
+
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     W = Math.round(canvas.clientWidth);
     H = Math.round(canvas.clientHeight);
-    if (W && H) {
+    /* iOS fires resize as the URL bar collapses while scrolling — only rebuild
+       the hero when its box genuinely changed, or the name re-scatters mid-read */
+    if (W && H && (W !== lastW || H !== lastH)) {
+      lastW = W;
+      lastH = H;
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -735,5 +774,24 @@
   if (!reduceMotion) {
     requestAnimationFrame(tick);
     requestAnimationFrame(fxTick);
+  }
+
+  /* open the site with #debug appended to the URL for an on-device diagnostic readout */
+  if (location.hash === '#debug') {
+    const el = document.createElement('pre');
+    el.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99;margin:0;' +
+      'background:rgba(0,0,0,.78);color:#8f8;font:11px/1.6 monospace;' +
+      'padding:8px 10px;border-radius:6px;max-width:92vw;white-space:pre-wrap;pointer-events:none';
+    const update = () => {
+      el.textContent =
+        'canvas ' + W + 'x' + H + ' dpr ' + (window.devicePixelRatio || 1) +
+        '\ntargets ' + targets.length + (targetsBlocked ? ' (reads BLOCKED — text fallback)' : '') +
+        '\nreduceMotion ' + reduceMotion +
+        '\ndissolve ' + dissolve.toFixed(2) + ' heroVisible ' + heroVisible +
+        '\nmode ' + mode + ' · lang ' + lang;
+    };
+    update();
+    setInterval(update, 800);
+    document.body.appendChild(el);
   }
 })();
