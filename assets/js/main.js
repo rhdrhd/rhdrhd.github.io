@@ -775,4 +775,23 @@
     requestAnimationFrame(tick);
     requestAnimationFrame(fxTick);
   }
+
+  /* open the site with #debug appended to the URL for an on-device diagnostic readout */
+  if (location.hash === '#debug') {
+    const el = document.createElement('pre');
+    el.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99;margin:0;' +
+      'background:rgba(0,0,0,.78);color:#8f8;font:11px/1.6 monospace;' +
+      'padding:8px 10px;border-radius:6px;max-width:92vw;white-space:pre-wrap;pointer-events:none';
+    const update = () => {
+      el.textContent =
+        'canvas ' + W + 'x' + H + ' dpr ' + (window.devicePixelRatio || 1) +
+        '\ntargets ' + targets.length + (targetsBlocked ? ' (reads BLOCKED — text fallback)' : '') +
+        '\nreduceMotion ' + reduceMotion +
+        '\ndissolve ' + dissolve.toFixed(2) + ' heroVisible ' + heroVisible +
+        '\nmode ' + mode + ' · lang ' + lang;
+    };
+    update();
+    setInterval(update, 800);
+    document.body.appendChild(el);
+  }
 })();
