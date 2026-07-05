@@ -219,6 +219,7 @@ html[data-mode="dark"] .flame {
 #hero-canvas {
   display: block;
   width: min(100%, 1000px);
+  height: clamp(170px, 30vh, 300px);
   height: clamp(170px, 30svh, 300px);
   cursor: pointer;
   touch-action: pan-y;
@@ -653,6 +654,7 @@ html[data-mode="dark"] .card:hover::before { box-shadow: 0 0 10px rgba(212, 118,
 
 /* ———— 404 page ———— */
 .lost {
+  min-height: calc(100vh - 76px);
   min-height: calc(100svh - 76px);
   display: flex;
   flex-direction: column;
