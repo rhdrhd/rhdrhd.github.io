@@ -1,7 +1,7 @@
 /* The Gallery & The Bonfire.
    Hero: pointillism name — water physics in the gallery, ignition in the dark.
-   Atmosphere: page-wide petals/leaves falling (light) or embers rising (dark),
-   plus universal click effects — pond ripples or spreading fire. */
+   Atmosphere: page-wide embers rising in the dark, plus universal click effects.
+   Copy: three languages (EN / 中文 / 日本語) × two moods (gallery / bonfire). */
 (() => {
   'use strict';
 
@@ -9,7 +9,144 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const TAU = Math.PI * 2;
 
-  /* ———— theme ———— */
+  /* ———— copy: language × mood ———— */
+
+  const STRINGS = {
+    en: {
+      'nav.work': 'Work',
+      'nav.contact': 'Contact',
+      'toggle': { light: 'Light the bonfire', dark: 'Return to the gallery' },
+      'hero.tag': { light: 'AI infrastructure · agentic systems · Edinburgh', dark: 'The flame of inference is kindled' },
+      'hero.sub': { light: 'I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, dots of paint.', dark: 'Keeper of the serving stack. What is generation, if not memory rekindled — one token at a time?' },
+      'now.label': { light: 'Currently', dark: 'The present age' },
+      'now.text': 'Researching runtime scheduling for agentic LLM workloads on vLLM-Ascend at Huawei R&D UK — how concurrent coding agents, RL rollouts, and Best-of-N swarms should share an inference cluster. On the side: essays on the systems layer of AI.',
+      'exp.label': { light: 'Experience', dark: 'The journey' },
+      'edu.label': { light: 'Education', dark: 'The apprenticeship' },
+      'job1.title': 'System AI Research Engineer',
+      'job1.when': 'Oct 2025 — present',
+      'job1.org': 'Huawei Technologies R&D (UK) · Edinburgh',
+      'job1.desc': 'Delay-aware scheduling for concurrent coding agents — lifting prefix-cache hit rate from 56% to 72% and halving queue wait. Built a cross-layer observability stack (OpenTelemetry, Prometheus) unifying agent, serving, and NPU telemetry on one timeline.',
+      'job2.title': 'Technical Insight Analyst',
+      'job2.when': 'Nov 2024 — Oct 2025',
+      'job2.org': 'Huawei Technologies R&D (UK) · Edinburgh',
+      'job2.desc': 'Comparative evaluation of LLM inference across Cerebras wafer-scale, NVIDIA, and Ascend architectures; helped pivot the team toward agentic serving. Initiated an agentic AI hackathon with the University of Edinburgh — 100+ participants.',
+      'edu1.title': 'MSc Integrated Machine Learning Systems',
+      'edu1.when': '2023 — 2024',
+      'edu1.org': 'University College London · Distinction',
+      'edu2.title': 'BEng Computer Science & Electronic Engineering',
+      'edu2.when': '2020 — 2023',
+      'edu2.org': 'University of Liverpool · First Class Honours',
+      'work.label': { light: 'Selected work', dark: 'Relics' },
+      'card1.title': 'Delay-aware sub-batch scheduling',
+      'card1.desc': { light: 'Runtime scheduling for vLLM-Ascend serving concurrent coding agents — staggers bursts, packs sub-batches by delay tolerance. Prefix-cache hit rate 56→72%, queue wait halved.', dark: 'A scheduling rite of curious design. It delays the eager and staggers the burst; those who waited found their queues halved, and the cache remembered what it had once forgot.' },
+      'card2.title': 'Cross-layer observability for agentic serving',
+      'card2.desc': { light: 'OpenTelemetry and Prometheus with custom span converters and Gantt exporters — agent, serving, and NPU telemetry unified on a single timeline.', dark: 'An eye that sees across three worlds at once — agent, server, and silicon. No cycle is spent unwitnessed.' },
+      'card3.title': 'Implicit persona dialogue generation',
+      'card3.desc': { light: 'In-context pipeline that infers persona from dialogue history alone — no predefined profiles. Outperformed most implicit- and explicit-persona systems on fluency and diversity.', dark: 'It listens, and from listening alone divines the nature of the speaker. No profile written; none needed.' },
+      'card4.meta': { light: 'writing · 2025', dark: 'scroll · 2025' },
+      'card4.title': 'Prometheus brings fire',
+      'card4.desc': { light: 'Open-source model democratization versus the concentration of compute.', dark: 'The first flame was stolen, not granted. On who may carry fire — the many, or the few.' },
+      'skills.label': { light: 'Skills', dark: 'Attunement' },
+      'sk.inference': 'inference',
+      'sk.agentic': 'agentic',
+      'sk.hardware': 'hardware',
+      'sk.tooling': 'tooling',
+      'contact.label': { light: 'Contact', dark: 'Summon' },
+      'contact.title': { light: "Let's talk", dark: 'Leave a summoning sign' },
+      'contact.email': 'email',
+      'foot.line': { light: 'Edinburgh · assembled from discrete parts', dark: 'Rest here, traveller. The site remembers your visit.' },
+    },
+    'zh-CN': {
+      'nav.work': '作品',
+      'nav.contact': '联系',
+      'toggle': { light: '点燃篝火', dark: '回到画廊' },
+      'hero.tag': { light: 'AI 基础设施 · 智能体系统 · 爱丁堡', dark: '推理之火已被点燃' },
+      'hero.sub': { light: '我构建推理系统，也研究意义如何由离散的部分组装而成——词元、缓存、点点颜料。', dark: '服务栈的守火人。所谓生成，不过是记忆被重新点燃——一次一个词元。' },
+      'now.label': { light: '近况', dark: '现世' },
+      'now.text': '在华为技术研发（英国）研究 vLLM-Ascend 上智能体 LLM 工作负载的运行时调度——并发编码智能体、强化学习 rollout 与 Best-of-N 集群应如何共享同一个推理集群。业余时间：写关于 AI 系统层的随笔。',
+      'exp.label': { light: '经历', dark: '旅程' },
+      'edu.label': { light: '教育', dark: '修行' },
+      'job1.title': '系统 AI 研究工程师',
+      'job1.when': '2025年10月 — 至今',
+      'job1.org': '华为技术研发（英国）· 爱丁堡',
+      'job1.desc': '面向并发编码智能体的延迟感知调度——前缀缓存命中率从 56% 提升至 72%，排队等待时间减半。构建跨层可观测性体系（OpenTelemetry、Prometheus），将智能体、推理服务与 NPU 遥测统一在同一条时间线上。',
+      'job2.title': '技术洞察分析师',
+      'job2.when': '2024年11月 — 2025年10月',
+      'job2.org': '华为技术研发（英国）· 爱丁堡',
+      'job2.desc': '对比评估 Cerebras 晶圆级、NVIDIA 与昇腾架构上的 LLM 推理；推动团队转向智能体推理服务。与爱丁堡大学共同发起智能体 AI 黑客松——100 余人参与。',
+      'edu1.title': '集成机器学习系统硕士',
+      'edu1.when': '2023 — 2024',
+      'edu1.org': '伦敦大学学院 · 优等（Distinction）',
+      'edu2.title': '计算机科学与电子工程学士',
+      'edu2.when': '2020 — 2023',
+      'edu2.org': '利物浦大学 · 一等荣誉学位',
+      'work.label': { light: '精选作品', dark: '遗物' },
+      'card1.title': '延迟感知的子批次调度',
+      'card1.desc': { light: '为 vLLM-Ascend 上的并发编码智能体设计的运行时调度——错开突发请求，按延迟容忍度打包子批次。前缀缓存命中率 56→72%，排队等待减半。', dark: '一场构造奇特的调度仪式。它让性急者稍候，令蜂拥者错行；等待过的人发现队列已减半，而缓存想起了它曾遗忘之物。' },
+      'card2.title': '面向智能体推理服务的跨层可观测性',
+      'card2.desc': { light: '基于 OpenTelemetry 与 Prometheus，自研 span 转换器与甘特图导出器——智能体、推理服务与 NPU 遥测统一于同一时间线。', dark: '一只同时注视三界之眼——智能体、服务器与硅片。没有一个周期在无人见证中流逝。' },
+      'card3.title': '隐式人格对话生成',
+      'card3.desc': { light: '仅凭对话历史推断人格的上下文内流水线——无需预定义档案。在流畅度与多样性上优于多数隐式与显式人格系统。', dark: '它倾听，仅凭倾听便洞悉说话者的本性。无档案可查，亦无需档案。' },
+      'card4.meta': { light: '随笔 · 2025', dark: '卷轴 · 2025' },
+      'card4.title': '普罗米修斯盗火',
+      'card4.desc': { light: '开源模型的民主化与算力的集中化。', dark: '火种是盗来的，而非赐予的。论谁可执火——众人，还是少数。' },
+      'skills.label': { light: '技能', dark: '禀赋' },
+      'sk.inference': '推理',
+      'sk.agentic': '智能体',
+      'sk.hardware': '硬件',
+      'sk.tooling': '工具链',
+      'contact.label': { light: '联系', dark: '召唤' },
+      'contact.title': { light: '聊聊吧', dark: '留下召唤印记' },
+      'contact.email': '邮箱',
+      'foot.line': { light: '爱丁堡 · 由离散的部分组装而成', dark: '旅人，请在此稍歇。此地会记得你的到访。' },
+    },
+    ja: {
+      'nav.work': '作品',
+      'nav.contact': '連絡',
+      'toggle': { light: '篝火を灯す', dark: 'ギャラリーへ戻る' },
+      'hero.tag': { light: 'AI インフラ · エージェントシステム · エディンバラ', dark: '推論の火が灯された' },
+      'hero.sub': { light: '推論システムを作りながら、意味が離散的な断片——トークン、キャッシュ、絵の具の点——からどう組み上がるのかを探っています。', dark: 'サービングスタックの火守り。生成とは、記憶が再び灯ること——一トークンずつ。' },
+      'now.label': { light: '近況', dark: '現世' },
+      'now.text': 'ファーウェイ技術研究開発（英国）にて、vLLM-Ascend 上のエージェント型 LLM ワークロードのランタイムスケジューリングを研究——並行するコーディングエージェント、RL ロールアウト、Best-of-N の群れが、ひとつの推論クラスタをどう分け合うべきか。余暇には AI のシステム層についてのエッセイを執筆。',
+      'exp.label': { light: '経歴', dark: '旅路' },
+      'edu.label': { light: '学歴', dark: '修行の道' },
+      'job1.title': 'システム AI リサーチエンジニア',
+      'job1.when': '2025年10月 — 現在',
+      'job1.org': 'ファーウェイ技術研究開発（英国）· エディンバラ',
+      'job1.desc': '並行コーディングエージェントのための遅延考慮スケジューリング——プレフィックスキャッシュ命中率を 56% から 72% へ引き上げ、待ち時間を半減。OpenTelemetry と Prometheus によるクロスレイヤ可観測性基盤を構築し、エージェント・サービング・NPU のテレメトリをひとつのタイムラインに統合。',
+      'job2.title': 'テクニカルインサイトアナリスト',
+      'job2.when': '2024年11月 — 2025年10月',
+      'job2.org': 'ファーウェイ技術研究開発（英国）· エディンバラ',
+      'job2.desc': 'Cerebras ウェハスケール、NVIDIA、Ascend 各アーキテクチャ上の LLM 推論を比較評価し、チームのエージェントサービングへの転換を後押し。エディンバラ大学とともにエージェント AI ハッカソンを立ち上げ——参加者 100 名以上。',
+      'edu1.title': '統合機械学習システム修士',
+      'edu1.when': '2023 — 2024',
+      'edu1.org': 'ユニバーシティ・カレッジ・ロンドン · 優等（Distinction）',
+      'edu2.title': '計算機科学・電子工学学士',
+      'edu2.when': '2020 — 2023',
+      'edu2.org': 'リヴァプール大学 · 第一級優等学位',
+      'work.label': { light: '代表作', dark: '遺物' },
+      'card1.title': '遅延考慮サブバッチスケジューリング',
+      'card1.desc': { light: 'vLLM-Ascend 上で並行コーディングエージェントを捌くランタイムスケジューリング——バーストをずらし、遅延許容度でサブバッチを構成。プレフィックスキャッシュ命中率 56→72%、待ち時間半減。', dark: '奇妙な意匠の調停の儀。急く者を待たせ、殺到する者をずらす。待った者の列は半ばに減り、キャッシュはかつて忘れたものを思い出した。' },
+      'card2.title': 'エージェントサービングのためのクロスレイヤ可観測性',
+      'card2.desc': { light: 'OpenTelemetry と Prometheus に独自のスパン変換器とガントチャート出力を加え——エージェント、サービング、NPU のテレメトリをひとつのタイムラインへ。', dark: '三つの世界を同時に見据える眼——エージェント、サーバ、そしてシリコン。見届けられぬまま費やされるサイクルはない。' },
+      'card3.title': '暗黙ペルソナ対話生成',
+      'card3.desc': { light: '対話履歴のみからペルソナを推定するインコンテキストパイプライン——事前定義プロファイル不要。流暢さと多様性で多くの既存システムを上回る。', dark: 'それは聴く。聴くことだけで、語り手の本性を見抜く。書かれた素性はなく、要りもしない。' },
+      'card4.meta': { light: '随筆 · 2025', dark: '巻物 · 2025' },
+      'card4.title': 'プロメテウス、火をもたらす',
+      'card4.desc': { light: 'オープンソースモデルの民主化と、計算資源の寡占について。', dark: '最初の火は授けられたのではなく、盗まれた。火を持つべきは万人か、少数か。' },
+      'skills.label': { light: 'スキル', dark: '記憶' },
+      'sk.inference': '推論',
+      'sk.agentic': 'エージェント',
+      'sk.hardware': 'ハードウェア',
+      'sk.tooling': 'ツール',
+      'contact.label': { light: '連絡', dark: '召喚' },
+      'contact.title': { light: '話しましょう', dark: '召喚サインを残す' },
+      'contact.email': 'メール',
+      'foot.line': { light: 'エディンバラ · 離散的な断片から組み上げられて', dark: '旅人よ、ここで休むがいい。この場所はあなたの訪れを憶えている。' },
+    },
+  };
+
+  /* ———— theme & language state ———— */
 
   const PALETTES = {
     light: ['#6D9BC3', '#4E7FA6', '#8FAE7E', '#6FA294', '#52708C'],
@@ -20,20 +157,53 @@
   const EMBER_COLOR = '#D4762C';
 
   let mode = root.dataset.mode === 'dark' ? 'dark' : 'light';
+  let lang = 'en';
+  try {
+    lang = localStorage.getItem('lang') ||
+      (navigator.language.indexOf('zh') === 0 ? 'zh-CN'
+        : navigator.language.indexOf('ja') === 0 ? 'ja' : 'en');
+  } catch (e) { /* private browsing */ }
+  if (!STRINGS[lang]) lang = 'en';
 
   const toggle = document.getElementById('theme-toggle');
   const metaTheme = document.querySelector('meta[name="theme-color"]');
-  const copyNodes = Array.from(document.querySelectorAll('[data-light]'));
+  const copyNodes = Array.from(document.querySelectorAll('[data-i18n]'));
+  const langButtons = Array.from(document.querySelectorAll('.lang-btn'));
 
-  function swapCopy(next, instant) {
-    const write = () => copyNodes.forEach((el) => { el.textContent = el.dataset[next]; });
-    if (instant || reduceMotion) { write(); return; }
+  function writeCopy() {
+    copyNodes.forEach((el) => {
+      const v = STRINGS[lang][el.dataset.i18n] || STRINGS.en[el.dataset.i18n];
+      if (v == null) return;
+      el.textContent = typeof v === 'string' ? v : v[mode];
+    });
+  }
+
+  function swapCopy(instant) {
+    if (instant || reduceMotion) { writeCopy(); return; }
     copyNodes.forEach((el) => el.classList.add('fading'));
     setTimeout(() => {
-      write();
+      writeCopy();
       copyNodes.forEach((el) => el.classList.remove('fading'));
     }, 300);
   }
+
+  function setLang(next, instant) {
+    lang = next;
+    try { localStorage.setItem('lang', next); } catch (e) { /* private browsing */ }
+    root.lang = next;
+    langButtons.forEach((b) => {
+      const on = b.dataset.lang === next;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    swapCopy(instant);
+  }
+
+  langButtons.forEach((b) => {
+    b.addEventListener('click', () => {
+      if (b.dataset.lang !== lang) setLang(b.dataset.lang);
+    });
+  });
 
   function applyMode(next, instant) {
     mode = next;
@@ -41,7 +211,7 @@
     try { localStorage.setItem('mode', next); } catch (e) { /* private browsing */ }
     if (metaTheme) metaTheme.content = THEME_COLOR[next];
     toggle.setAttribute('aria-pressed', String(next === 'dark'));
-    swapCopy(next, instant);
+    swapCopy(instant);
     recolorParticles();
     populateAmbient();
   }
@@ -328,7 +498,7 @@
     requestAnimationFrame(tick);
   }
 
-  /* ———— atmosphere layer: drifting ambience + universal click effects ———— */
+  /* ———— atmosphere layer: rising embers + universal click effects ———— */
 
   const fx = document.getElementById('fx-canvas');
   const fctx = fx.getContext('2d');
@@ -556,22 +726,12 @@
     revealNodes.forEach((el) => io.observe(el));
   }
 
-  const cue = document.getElementById('scroll-cue');
-  if (cue) {
-    cue.addEventListener('click', () => {
-      document.getElementById('currently')
-        .scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
-    });
-  }
-
   /* ———— boot ———— */
 
   resize();
   onScroll();
-  if (mode === 'dark') {
-    swapCopy('dark', true);
-    toggle.setAttribute('aria-pressed', 'true');
-  }
+  toggle.setAttribute('aria-pressed', String(mode === 'dark'));
+  setLang(lang, true);
   if (!reduceMotion) {
     requestAnimationFrame(tick);
     requestAnimationFrame(fxTick);
