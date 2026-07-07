@@ -63,7 +63,7 @@ body {
 .mono { font-family: var(--font-mono); }
 
 /* descriptive copy shares the hero's serif voice; sans stays for nav & UI chrome */
-.plaque-text, .what, .where, .card p, .post p {
+.now-text, .what, .where, .card p, .post p {
   font-family: var(--font-serif);
 }
 
@@ -212,7 +212,7 @@ html[data-mode="dark"] .flame {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px clamp(12px, 3vw, 32px) 30px;
+  padding: 10px clamp(12px, 3vw, 32px) 42px;
   text-align: center;
 }
 
@@ -240,28 +240,25 @@ html[data-mode="dark"] .flame {
   line-height: 1.7;
 }
 
-/* museum wall label: "Currently" lives beside the painting, not in its own hall */
-.plaque {
-  margin: 24px auto 0;
-  max-width: 640px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 20px 17px;
+/* "Currently" is a brushed color band between wavy dividers, as the first mockup had it —
+   the block sits centered on the page axis, the words read left-aligned */
+#currently { padding: clamp(26px, 4vw, 46px) 0; }
+
+#currently .slab {
+  max-width: 660px;
+  margin: 0 auto 14px;
   text-align: left;
-  transition: background-color var(--theme-ease), border-color var(--theme-ease);
 }
 
-.plaque .slab {
-  margin: 0 0 6px;
-  font-size: 15px;
-}
-
-.plaque-text {
-  margin: 0;
-  font-size: 14.5px;
-  line-height: 1.7;
-  color: var(--muted);
+.now-text {
+  margin: 0 auto;
+  max-width: 660px;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--text);
   transition: color var(--theme-ease);
 }
 
