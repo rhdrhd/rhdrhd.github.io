@@ -121,6 +121,7 @@ html[lang="ja"] { --font-serif: Georgia, 'Hiragino Mincho ProN', 'Yu Mincho', 'N
 
 /* italics render poorly as oblique CJK — straighten them for 中文 / 日本語 */
 html[lang="zh-CN"] .hero-sub, html[lang="ja"] .hero-sub,
+html[lang="zh-CN"] .hero-tag, html[lang="ja"] .hero-tag,
 html[lang="zh-CN"] .slab, html[lang="ja"] .slab,
 html[lang="zh-CN"] .foot-line, html[lang="ja"] .foot-line { font-style: normal; }
 
@@ -227,7 +228,9 @@ html[data-mode="dark"] .flame {
 
 .hero-tag {
   margin: 2px 0 0;
-  font-size: 13px;
+  font-size: 15px;
+  font-style: italic;
+  letter-spacing: 0.02em;
   color: var(--accent);
 }
 
