@@ -64,7 +64,7 @@
     root.dataset.mode = mode;
     if (toggle) toggle.setAttribute('aria-pressed', String(mode === 'dark'));
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = mode === 'dark' ? '#191c19' : '#f7f5f0';
+    if (meta) meta.content = mode === 'dark' ? '#000000' : '#f7f5f0';
   }
   function setLanguage(lang) {
     if (lang !== 'en' && !translations[lang]) lang = 'en';

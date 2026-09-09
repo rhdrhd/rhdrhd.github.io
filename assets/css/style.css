@@ -11,12 +11,12 @@
 }
 html[data-mode='dark'] {
   color-scheme: dark;
-  --paper: #191c19;
-  --ink: #edece5;
-  --secondary: #b0b7ab;
+  --paper: #000000;
+  --ink: #ededed;
+  --secondary: #b3b3b3;
   --accent: #d6ad90;
-  --line: #3b4239;
-  --wash: #242a23;
+  --line: #333333;
+  --wash: #161616;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }

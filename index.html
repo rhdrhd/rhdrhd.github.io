@@ -17,11 +17,11 @@
       let mode = 'light';
       try { const saved = localStorage.getItem('mode'); mode = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (_) {}
       document.documentElement.dataset.mode = mode;
-      document.querySelector('meta[name="theme-color"]').content = mode === 'dark' ? '#191c19' : '#f7f5f0';
+      document.querySelector('meta[name="theme-color"]').content = mode === 'dark' ? '#000000' : '#f7f5f0';
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260909j">
-  <script src="assets/js/main.js?v=20260909i" defer></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20260909k">
+  <script src="assets/js/main.js?v=20260909k" defer></script>
 </head>
 <body id="top">
   <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
