@@ -1,28 +1,23 @@
 <!doctype html>
-<html lang="en" data-mode="light">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 — Zirui Wang</title>
   <meta name="robots" content="noindex">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='32' cy='38' r='16' fill='%234E7FA6'/%3E%3Ccircle cx='63' cy='31' r='13' fill='%238FAE7E'/%3E%3Ccircle cx='52' cy='63' r='15' fill='%236FA294'/%3E%3Ccircle cx='75' cy='58' r='10' fill='%236D9BC3'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f7f5f0">
+  <title>Page not found — Zirui Wang</title>
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/style.css?v=20260909j">
   <script>
-    (function () {
-      var m = 'light';
-      try {
-        m = localStorage.getItem('mode') ||
-          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } catch (e) {}
-      document.documentElement.dataset.mode = m;
-    })();
+    (() => { try { const saved = localStorage.getItem('mode'); document.documentElement.dataset.mode = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (_) {} })();
   </script>
-  <link rel="stylesheet" href="/assets/css/style.css?v=20260707a">
 </head>
 <body>
   <main class="lost">
-    <h1>404</h1>
-    <p>Nothing is painted here — the canvas you seek does not exist, or has crumbled to ash.</p>
-    <a class="pill" href="/">Return to the gallery</a>
+    <p class="eyebrow">Zirui Wang · 404</p>
+    <h1>Page not found.</h1>
+    <p>The page may have moved, or the address may be incorrect.</p>
+    <a href="/">Return to the homepage</a>
   </main>
 </body>
 </html>

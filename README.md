@@ -1,23 +1,31 @@
-# rhdrhd.github.io
+# Zirui Wang — personal website
 
-Personal site of Zirui Wang — **The Gallery & The Bonfire**.
+A static editorial portfolio for AI infrastructure and agentic systems. Plain HTML, CSS, and JavaScript; no build step or dependencies.
 
-A single static page, no build step, no dependencies:
+## Local preview
 
-- **Light mode — the Gallery.** Impressionist palette; a pointillism hero where a few thousand particles drift in Monet water-lily colors and resolve into the name — meaning assembled from discrete parts, tokens and dots of paint alike.
-- **Dark mode — the Bonfire.** Gold-on-charcoal, rising embers, the same content re-skinned with soulslike flavor text. The toggle is a small flame that ignites.
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
+```
 
-The chosen mode persists in `localStorage` and defaults to the visitor's `prefers-color-scheme`. All animation respects `prefers-reduced-motion`.
+Open http://127.0.0.1:8000.
 
 ## Structure
 
-```
-index.html          — the whole site
-404.html            — themed not-found page
-assets/css/style.css
-assets/js/main.js   — particle hero, theme toggle, scroll reveal
-```
+- `index.html`: complete English content and concise research summaries.
+- `assets/css/style.css`: responsive reading grid, light/dark palettes, and print styles.
+- `assets/js/main.js`: theme controls and retained Chinese/Japanese translation data. Professional copy stays the same across light/dark appearances.
+- `assets/Zirui_Wang_Resume.pdf`: September 2026 résumé.
+- `404.html`: matching not-found page.
+
+The complete English content works without JavaScript. The footer pairs “Ad Astra” with the theme switch, which appears when JavaScript is available. Theme follows the system until explicitly changed and persists locally. The page stays in English without a language selector. No motion is required to read content.
+
+## Content updates
+
+Edit English in `index.html` and corresponding translation keys in `assets/js/main.js`. Keep evaluation conditions alongside performance claims. The SoCC 2026 item is a submission, not an accepted publication. Content was updated from the résumé supplied on September 9, 2026; detailed experience dates use that résumé rather than the limited public LinkedIn view.
+
+Update the asset version strings when changing CSS, JavaScript, or the résumé to avoid stale deployment caches.
 
 ## Deploy
 
-Push to `master`. GitHub Actions (`.github/workflows/pages.yml`) uploads the repo as-is and deploys it to GitHub Pages — no build step. Pages source must be set to **GitHub Actions** in the repo settings.
+Push to `master`. `.github/workflows/pages.yml` uploads the repository and deploys it through GitHub Actions to GitHub Pages. Development branches do not automatically deploy. The configured public domain is https://zirui-w.com/.

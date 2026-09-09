@@ -4,227 +4,98 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zirui Wang — AI infrastructure &amp; agentic systems</title>
-  <meta name="description" content="Zirui Wang builds inference systems and studies how meaning assembles from discrete parts — tokens, caches, dots of paint. AI infrastructure and agentic systems, Edinburgh.">
+  <meta name="description" content="Zirui Wang is an AI Research Engineer in Edinburgh working on LLM inference, agentic systems, and accelerator architectures.">
   <link rel="canonical" href="https://zirui-w.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Zirui Wang — AI infrastructure &amp; agentic systems">
-  <meta property="og:description" content="Inference systems, agentic serving, and how meaning assembles from discrete parts. Light the bonfire.">
+  <meta property="og:description" content="Research and engineering at the intersection of LLM serving, agent orchestration, and hardware.">
   <meta property="og:url" content="https://zirui-w.com/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='32' cy='38' r='16' fill='%234E7FA6'/%3E%3Ccircle cx='63' cy='31' r='13' fill='%238FAE7E'/%3E%3Ccircle cx='52' cy='63' r='15' fill='%236FA294'/%3E%3Ccircle cx='75' cy='58' r='10' fill='%236D9BC3'/%3E%3C/svg%3E">
-  <meta name="theme-color" content="#F2F5F3">
+  <meta name="theme-color" content="#f7f5f0">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
   <script>
-    (function () {
-      var m = 'light';
-      try {
-        m = localStorage.getItem('mode') ||
-          (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      } catch (e) {}
-      document.documentElement.dataset.mode = m;
-      if (m === 'dark') {
-        var t = document.querySelector('meta[name="theme-color"]');
-        if (t) t.content = '#14110D';
-      }
+    (() => {
+      let mode = 'light';
+      try { const saved = localStorage.getItem('mode'); mode = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (_) {}
+      document.documentElement.dataset.mode = mode;
+      document.querySelector('meta[name="theme-color"]').content = mode === 'dark' ? '#191c19' : '#f7f5f0';
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/style.css?v=20260707a">
+  <link rel="stylesheet" href="assets/css/style.css?v=20260909j">
+  <script src="assets/js/main.js?v=20260909i" defer></script>
 </head>
 <body id="top">
-  <a class="skip" href="#main">Skip to content</a>
-  <canvas id="fx-canvas" aria-hidden="true"></canvas>
-
-  <header class="nav">
-    <a class="monogram serif" href="#top" aria-label="Zirui Wang — home">Z·W</a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#work" data-i18n="nav.work">Work</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
-      <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Toggle between gallery and bonfire themes">
-        <svg class="icon flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12c2 -2.96 0 -7 -1 -8c0 3.038 -1.773 4.741 -3 6c-1.226 1.26 -2 3.24 -2 5a6 6 0 1 0 12 0c0 -1.532 -1.056 -3.94 -2 -5c-1.786 3 -2.791 3 -4 2z"/></svg>
-        <span class="toggle-label" data-i18n="toggle">Light the bonfire</span>
-      </button>
-    </nav>
-  </header>
-
-  <main id="main">
-
-    <section class="hero">
-      <h1 class="sr-only">Zirui Wang</h1>
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-      <p class="hero-tag serif" data-i18n="hero.tag">AI infrastructure · agentic systems · Edinburgh</p>
-      <p class="hero-sub serif" data-i18n="hero.sub">I build inference systems, and I study how meaning assembles from discrete parts — tokens, caches, and traces of computation.</p>
-    </section>
-
-    <svg class="divider" style="--from:var(--bg);--to:var(--wash1)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 38 C 130 18, 300 52, 460 30 S 760 46, 940 24 S 1240 44, 1440 20 L 1440 60 L 0 60 Z"/></svg>
-
-    <section id="currently" class="wash1">
-      <div class="container-wide">
-        <h2 class="slab" data-i18n="now.label">Currently</h2>
-        <p class="now-text" data-i18n="now.text">AI Research Engineer at Huawei Edinburgh Research Centre. The work focuses on two pillars: making large-scale LLM inference faster and more efficient — especially for agentic AI workloads with multi-agent coordination over complex, multi-step tasks, using runtime scheduling on vLLM-Ascend; and hardware architecture insights — deeply comparing heterogeneous platforms to identify optimal acceleration paths.</p>
-      </div>
-    </section>
-
-    <svg class="divider" style="--from:var(--wash1);--to:var(--bg)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 24 C 170 44, 320 12, 520 32 S 820 16, 1000 38 S 1280 20, 1440 34 L 1440 60 L 0 60 Z"/></svg>
-
-    <section id="experience">
-      <div class="container-wide duo">
-        <div class="duo-main">
-          <h2 class="slab" data-i18n="exp.label">Experience</h2>
-          <div class="timeline">
-            <article class="entry reveal" style="--dot:#4E7FA6">
-              <div class="entry-head">
-                <h3 class="serif" data-i18n="job1.title">System AI Research Engineer</h3>
-                <span class="mono when" data-i18n="job1.when">Oct 2025 — present</span>
-              </div>
-              <p class="where" data-i18n="job1.org">Huawei Technologies R&amp;D (UK) · Edinburgh</p>
-              <p class="what" data-i18n="job1.desc">Delay-aware scheduling for concurrent coding agents — lifting prefix-cache hit rate from 56% to 72% and halving queue wait. Built a cross-layer observability stack (OpenTelemetry, Prometheus) unifying agent, serving, and NPU telemetry on one timeline.</p>
-            </article>
-            <article class="entry reveal" style="--dot:#8FAE7E">
-              <div class="entry-head">
-                <h3 class="serif" data-i18n="job2.title">Technical Insight Specialist</h3>
-                <span class="mono when" data-i18n="job2.when">Nov 2024 — Oct 2025</span>
-              </div>
-              <p class="where" data-i18n="job2.org">Huawei Technologies R&amp;D (UK) · Edinburgh</p>
-              <p class="what" data-i18n="job2.desc">Comparative evaluation of LLM inference across Cerebras wafer-scale, NVIDIA, and Ascend architectures; helped pivot the team toward agentic serving. Initiated an agentic AI hackathon with the University of Edinburgh — 100+ participants.</p>
-            </article>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="page">
+    <main id="main">
+      <section class="intro" aria-labelledby="name">
+        <div class="intro-title">
+          <h1 id="name">Zirui Wang<span class="name-dot" aria-hidden="true">.</span></h1>
+        </div>
+        <img class="profile-photo" src="assets/images/zirui-profile.jpg?v=20260909b" alt="Zirui Wang by the sea" width="738" height="678" decoding="async" fetchpriority="high">
+        <div class="intro-copy">
+          <p class="lead" data-i18n="hero.lead">I'm an AI Research Engineer at Huawei's Edinburgh Research Centre, focused on making agentic AI systems run faster. My work includes agent forking, admission control, state management, and scheduling, alongside profiling agent frameworks to find execution bottlenecks.</p>
+          <p class="lead" data-i18n="hero.interests">I'm interested in how hardware architecture shapes AI performance, especially memory systems and interconnects. I'm open to new opportunities in AI systems and performance engineering, particularly roles focused on optimizing agentic AI workloads.</p>
+          <p class="intro-personal" data-i18n="hero.personal">Outside work, I enjoy hiking, travelling, and swimming.</p>
+          <div class="text-links">
+            <a href="mailto:ziruiwang.work@gmail.com" data-i18n="email">Email</a>
+            <a href="https://github.com/rhdrhd" rel="me">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://substack.com/@zariusw" rel="me">Substack <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/zirui-w-348a80225/" rel="me">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="assets/Zirui_Wang_Resume.pdf?v=20260901" target="_blank" rel="noopener"><span data-i18n="resume">Résumé</span> <span class="file-label">PDF</span></a>
           </div>
         </div>
-        <aside class="duo-side">
-          <div class="side-block reveal" id="education">
-            <h2 class="slab" data-i18n="edu.label">Education</h2>
-            <div class="timeline">
-              <article class="entry" style="--dot:#6FA294">
-                <div class="entry-head">
-                  <h3 class="serif" data-i18n="edu1.title">MSc Integrated Machine Learning Systems</h3>
-                  <span class="mono when" data-i18n="edu1.when">2023 — 2024</span>
-                </div>
-                <p class="where" data-i18n="edu1.org">University College London · Distinction</p>
-              </article>
-              <article class="entry" style="--dot:#52708C">
-                <div class="entry-head">
-                  <h3 class="serif" data-i18n="edu2.title">BEng Computer Science &amp; Electronic Engineering</h3>
-                  <span class="mono when" data-i18n="edu2.when">2020 — 2023</span>
-                </div>
-                <p class="where" data-i18n="edu2.org">University of Liverpool · First Class Honours</p>
-              </article>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
+      </section>
 
-    <svg class="divider" style="--from:var(--bg);--to:var(--wash2)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 32 C 150 10, 340 48, 540 26 S 860 44, 1060 22 S 1300 40, 1440 26 L 1440 60 L 0 60 Z"/></svg>
-
-    <section id="work" class="wash2">
-      <div class="container-wide">
-        <h2 class="slab" data-i18n="work.label">Selected work</h2>
-        <div class="cards">
-          <article class="card reveal">
-            <h3 class="serif" data-i18n="card1.title">Delay-aware sub-batch scheduling</h3>
-            <p data-i18n="card1.desc">Runtime scheduling for vLLM-Ascend serving concurrent coding agents — staggers bursts, packs sub-batches by delay tolerance. Prefix-cache hit rate 56→72%, queue wait halved.</p>
+      <section class="section-grid" id="work" aria-labelledby="work-heading">
+        <header class="section-heading"><span class="section-number" aria-hidden="true">01</span><h2 id="work-heading" data-i18n="work.heading">Selected work</h2></header>
+        <div class="section-content">
+          <article class="work-entry">
+            <p class="eyebrow" data-i18n="work1.category">LLM serving · Huawei</p>
+            <h3 data-i18n="work1.title">Adaptive scheduling &amp; KV-cache management</h3>
+            <p data-i18n="work1.desc">Designed policies for concurrent agentic workloads in vLLM-Ascend, completing batches 17% sooner at equal task-resolve rate in the evaluated workloads.</p>
+            <p class="publication" data-i18n="work1.status">Submitted to SoCC 2026.</p>
           </article>
-          <article class="card reveal">
-            <h3 class="serif" data-i18n="card2.title">Cross-layer observability for agentic serving</h3>
-            <p data-i18n="card2.desc">OpenTelemetry and Prometheus with custom span converters and Gantt exporters — agent, serving, and NPU telemetry unified on a single timeline.</p>
+          <article class="work-entry">
+            <p class="eyebrow" data-i18n="work2.category">Observability · Huawei</p>
+            <h3 data-i18n="work2.title">Cross-layer observability for agentic serving</h3>
+            <p data-i18n="work2.desc">Built an OpenTelemetry/OpenLIT pipeline with trace analysis and token-level latency profiling to identify coordination and memory bottlenecks in vLLM-Ascend.</p>
           </article>
-          <article class="card reveal">
-            <h3 class="serif" data-i18n="card3.title">Implicit persona dialogue generation</h3>
-            <p data-i18n="card3.desc">In-context pipeline that infers persona from dialogue history alone — no predefined profiles. Outperformed most implicit- and explicit-persona systems on fluency and diversity.</p>
+          <article class="work-entry">
+            <div class="entry-meta"><p class="eyebrow" data-i18n="work3.category">MSc dissertation · UCL</p><span class="date">2024</span></div>
+            <h3 data-i18n="work3.title">Personalized dialogue generation with implicit persona modeling</h3>
+            <p data-i18n="work3.desc">Built an in-context learning pipeline to infer personas from dialogue history and proposed Average Drift Score to quantify topic drift.</p>
           </article>
-          <article class="card reveal" id="writing">
-            <p class="card-meta mono" data-i18n="card4.meta">Substack writing</p>
-            <h3 class="serif" data-i18n="card4.title">Prometheus brings fire</h3>
-            <p data-i18n="card4.desc">Open-source model democratization versus the concentration of compute.</p>
+          <article class="work-entry">
+            <div class="entry-meta"><p class="eyebrow" data-i18n="work4.category">BEng dissertation · Liverpool</p><span class="date">2022–2023</span></div>
+            <h3 data-i18n="work4.title">Scientific data compression with a variational autoencoder</h3>
+            <p data-i18n="work4.desc">Adapted a scale-hyperprior variational autoencoder for 3D seismic waveforms, achieving lower-bitrate operating points than ZFP at matched distortion.</p>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <svg class="divider" style="--from:var(--wash2);--to:var(--wash3)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 32 C 150 10, 340 48, 540 26 S 860 44, 1060 22 S 1300 40, 1440 26 L 1440 60 L 0 60 Z"/></svg>
-
-    <section id="skills" class="wash3">
-      <div class="container-wide">
-        <h2 class="slab" data-i18n="skills.label">Skills</h2>
-        <div class="skill-cols">
-          <div class="skill-group reveal">
-            <p class="mono skill-key" data-i18n="sk.inference">inference</p>
-            <div class="skill-pills">
-              <span class="pill"><span class="pd" style="background:#4E7FA6"></span>vLLM · vLLM-Ascend</span>
-              <span class="pill"><span class="pd" style="background:#6D9BC3"></span>prefix caching</span>
-              <span class="pill"><span class="pd" style="background:#8FAE7E"></span>KV-cache management</span>
-              <span class="pill"><span class="pd" style="background:#52708C"></span>batching</span>
-            </div>
-          </div>
-          <div class="skill-group reveal">
-            <p class="mono skill-key" data-i18n="sk.agentic">agentic</p>
-            <div class="skill-pills">
-              <span class="pill"><span class="pd" style="background:#6FA294"></span>CrewAI</span>
-              <span class="pill"><span class="pd" style="background:#4E7FA6"></span>orchestration</span>
-              <span class="pill"><span class="pd" style="background:#8FAE7E"></span>workload profiling</span>
-            </div>
-          </div>
-          <div class="skill-group reveal">
-            <p class="mono skill-key" data-i18n="sk.hardware">hardware</p>
-            <div class="skill-pills">
-              <span class="pill"><span class="pd" style="background:#52708C"></span>Ascend NPU · CANN</span>
-              <span class="pill"><span class="pd" style="background:#6D9BC3"></span>HBM &amp; interconnects</span>
-              <span class="pill"><span class="pd" style="background:#6FA294"></span>GPU · wafer-scale</span>
-            </div>
-          </div>
-          <div class="skill-group reveal">
-            <p class="mono skill-key" data-i18n="sk.tooling">tooling</p>
-            <div class="skill-pills">
-              <span class="pill"><span class="pd" style="background:#8FAE7E"></span>PyTorch</span>
-              <span class="pill"><span class="pd" style="background:#4E7FA6"></span>OpenTelemetry</span>
-              <span class="pill"><span class="pd" style="background:#52708C"></span>Prometheus</span>
-              <span class="pill"><span class="pd" style="background:#6D9BC3"></span>Kubernetes</span>
-              <span class="pill"><span class="pd" style="background:#6FA294"></span>Python · C++</span>
-            </div>
-          </div>
+      <section class="section-grid" id="experience" aria-labelledby="experience-heading">
+        <header class="section-heading"><span class="section-number" aria-hidden="true">02</span><h2 id="experience-heading" data-i18n="experience.heading">Experience</h2></header>
+        <div class="section-content">
+          <div class="employer"><h3 data-i18n="employer">Huawei Technologies R&amp;D (UK)</h3><span class="margin-note" data-i18n="city">Edinburgh</span></div>
+          <article class="role-entry"><div class="entry-meta"><h4 data-i18n="role1.title">System AI Research Engineer</h4><span class="date" data-i18n="role1.date">Oct 2025 — present</span></div><p data-i18n="role1.desc">Research and engineering in inference scheduling, KV-cache management, observability, and agent orchestration.</p></article>
+          <article class="role-entry"><div class="entry-meta"><h4 data-i18n="role2.title">Technical Insight Specialist</h4><span class="date" data-i18n="role2.date">Nov 2024 — Oct 2025</span></div><p data-i18n="role2.desc">Compared Cerebras, NVIDIA, and Ascend architectures to inform inference infrastructure strategy. Helped shift research toward agentic serving and designed an openEuler agentic AI hackathon with the University of Edinburgh for 100+ participants.</p></article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <svg class="divider" style="--from:var(--wash3);--to:var(--bg)" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 32 C 150 10, 340 48, 540 26 S 860 44, 1060 22 S 1300 40, 1440 26 L 1440 60 L 0 60 Z"/></svg>
-
-    <section id="contact" class="contact">
-      <div class="container-wide">
-        <h2 class="slab" data-i18n="contact.label">Contact</h2>
-        <p class="contact-title serif" data-i18n="contact.title">Let's talk</p>
-        <p class="contact-mail mono"><a href="mailto:ziruiwang.work@gmail.com">ziruiwang.work@gmail.com</a></p>
-        <div class="contact-links">
-          <a class="pill" href="mailto:ziruiwang.work@gmail.com">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"/><path d="M3 7l9 6l9 -6"/></svg>
-            <span data-i18n="contact.email">Email</span>
-          </a>
-          <a class="pill" href="https://www.linkedin.com/in/zirui-w-348a80225/" rel="me noopener" target="_blank">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"/><path d="M8 11v5"/><path d="M8 8v.01"/><path d="M12 16v-5"/><path d="M16 16v-3a2 2 0 0 0 -4 0"/></svg>
-            LinkedIn
-          </a>
-          <a class="pill" href="https://github.com/rhdrhd" rel="me noopener" target="_blank">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/></svg>
-            GitHub
-          </a>
-          <a class="pill" href="assets/Zirui_Wang_Resume.pdf" target="_blank" rel="noopener">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/><path d="M9 9h1"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
-            <span data-i18n="contact.resume">Resume</span>
-          </a>
+      <section class="section-grid" id="education" aria-labelledby="education-heading">
+        <header class="section-heading"><span class="section-number" aria-hidden="true">03</span><h2 id="education-heading" data-i18n="education.heading">Education</h2></header>
+        <div class="section-content education-list">
+          <article><div class="entry-meta"><h3>University College London</h3><span class="date">2023–2024</span></div><p data-i18n="education1.degree">MSc Integrated Machine Learning Systems</p><span class="qualification" data-i18n="education1.grade">Distinction</span></article>
+          <article><div class="entry-meta"><h3>University of Liverpool</h3><span class="date">2020–2023</span></div><p data-i18n="education2.degree">BEng Computer Science &amp; Electronic Engineering</p><span class="qualification" data-i18n="education2.grade">First Class Honours</span></article>
         </div>
-      </div>
-    </section>
+      </section>
 
-  </main>
-
-  <footer class="foot">
-    <div class="lang-switch" role="group" aria-label="Language">
-      <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
-      <span class="lang-sep" aria-hidden="true">·</span>
-      <button type="button" class="lang-btn" data-lang="zh-CN" aria-pressed="false">中文</button>
-      <span class="lang-sep" aria-hidden="true">·</span>
-      <button type="button" class="lang-btn" data-lang="ja" aria-pressed="false">日本語</button>
-    </div>
-    <p class="serif foot-line" data-i18n="foot.line">Edinburgh · accelerating into the future</p>
-    <p class="mono foot-copy">© 2026 Zirui Wang</p>
-  </footer>
-
-  <script src="assets/js/main.js?v=20260707a"></script>
+      <section class="section-grid contact" id="contact" aria-labelledby="contact-heading">
+        <header class="section-heading"><h2 id="contact-heading" data-i18n="contact.heading">Get in touch</h2></header>
+        <div class="section-content"><p data-i18n="contact.copy">For conversations about inference infrastructure, agentic systems, or related research.</p><a class="contact-email" href="mailto:ziruiwang.work@gmail.com">ziruiwang.work@gmail.com <span aria-hidden="true">↗</span></a></div>
+      </section>
+    </main>
+    <footer class="footer"><p class="footer-motto">Ad Astra</p><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Dark appearance" aria-pressed="false" hidden><span class="theme-symbol" aria-hidden="true">◐</span></button></footer>
+  </div>
 </body>
 </html>
