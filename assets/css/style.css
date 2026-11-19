@@ -86,6 +86,21 @@ html:not([lang='en']) h1 { font-family: 'Iowan Old Style', Georgia, serif; }
 .lost { max-width: 600px; margin: 15vh auto; padding: 32px; }
 .lost h1 { margin: 12px 0 22px; }
 .lost p { color: var(--secondary); margin-bottom: 22px; }
+/* Paper page: one publication with its abstract, record, and citation. */
+.paper-head { padding: 56px 0 44px; }
+.paper-back { font-size: 14px; margin-bottom: 30px; }
+.paper-title { font: 400 clamp(30px, 4.6vw, 46px)/1.18 var(--serif); letter-spacing: -1px; margin: 12px 0 24px; text-wrap: balance; }
+.paper-authors { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 32px; font-size: 16px; line-height: 1.5; }
+.paper-authors span { display: block; font-size: 12px; color: var(--secondary); }
+.paper-abstract p { max-width: 66ch; }
+.paper-abstract p + p { margin-top: 16px; }
+.paper-facts { margin: 0; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 10px 20px; font-size: 14px; }
+.paper-facts dt { color: var(--secondary); font-size: 12px; padding-top: 2px; }
+.paper-facts dd { margin: 0; overflow-wrap: anywhere; }
+.paper-note { display: block; color: var(--secondary); font-size: 12px; }
+.paper-cite { max-width: 66ch; font-size: 14px; color: var(--secondary); overflow-wrap: anywhere; }
+.bibtex { margin: 18px 0 0; padding: 16px 18px; overflow-x: auto; background: var(--wash); border: 1px solid var(--line); border-radius: 5px; font: 12.5px/1.6 ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+.bibtex code { font: inherit; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 @media (max-width: 760px) {
   .page { width: min(100% - 48px, 620px); }
@@ -110,6 +125,10 @@ html:not([lang='en']) h1 { font-family: 'Iowan Old Style', Georgia, serif; }
   .entry-meta { gap: 5px 12px; }
   .role-entry .entry-meta { flex-direction: column; }
   .contact-email { font-size: 16px; }
+  .paper-head { padding: 32px 0 30px; }
+  .paper-back { margin-bottom: 20px; }
+  .paper-facts { grid-template-columns: 1fr; gap: 0; }
+  .paper-facts dd + dt { margin-top: 12px; }
 }
 @media (pointer: coarse) {
   .theme-toggle { min-height: 44px; min-width: 44px; }

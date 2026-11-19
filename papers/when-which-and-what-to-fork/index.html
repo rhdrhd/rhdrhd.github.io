@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-mode="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents — Zirui Wang</title>
+  <meta name="description" content="ACM SoCC 2026 short paper. A client-side launch policy for batches of LLM coding agents: run leaders first, publish checkpoints, and fork followers from them. Evaluated on SWE-bench Verified.">
+  <link rel="canonical" href="https://zirui-w.com/papers/when-which-and-what-to-fork/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents">
+  <meta property="og:description" content="ACM SoCC 2026 short paper by Zirui Wang, Mohamed M. Kassem, and Adam Barker. Abstract, PDF, and citation.">
+  <meta property="og:url" content="https://zirui-w.com/papers/when-which-and-what-to-fork/">
+  <meta name="citation_title" content="When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents">
+  <meta name="citation_author" content="Wang, Zirui">
+  <meta name="citation_author" content="Kassem, Mohamed M.">
+  <meta name="citation_author" content="Barker, Adam">
+  <meta name="citation_publication_date" content="2026/11">
+  <meta name="citation_conference_title" content="ACM Symposium on Cloud Computing Volume 2 (SoCC '26 Vol. 2)">
+  <meta name="citation_publisher" content="Association for Computing Machinery">
+  <meta name="citation_doi" content="10.1145/3828161.3857903">
+  <meta name="citation_pdf_url" content="https://zirui-w.com/assets/when-which-and-what-to-fork.pdf">
+  <meta name="citation_abstract_html_url" content="https://zirui-w.com/papers/when-which-and-what-to-fork/">
+  <meta name="theme-color" content="#f7f5f0">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents",
+    "author": [
+      { "@type": "Person", "name": "Zirui Wang", "url": "https://zirui-w.com/" },
+      { "@type": "Person", "name": "Mohamed M. Kassem" },
+      { "@type": "Person", "name": "Adam Barker" }
+    ],
+    "datePublished": "2026-11",
+    "isPartOf": { "@type": "PublicationVolume", "name": "ACM Symposium on Cloud Computing Volume 2 (SoCC '26 Vol. 2)" },
+    "publisher": { "@type": "Organization", "name": "Association for Computing Machinery" },
+    "identifier": "https://doi.org/10.1145/3828161.3857903",
+    "url": "https://zirui-w.com/papers/when-which-and-what-to-fork/",
+    "encoding": { "@type": "MediaObject", "contentUrl": "https://zirui-w.com/assets/when-which-and-what-to-fork.pdf", "encodingFormat": "application/pdf" },
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "keywords": "LLM agents, agent forking, inference serving, admission control, leader selection, best-of-N, KV cache, RL rollout"
+  }
+  </script>
+  <script>
+    (() => {
+      let mode = 'light';
+      try { const saved = localStorage.getItem('mode'); mode = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (_) {}
+      document.documentElement.dataset.mode = mode;
+      document.querySelector('meta[name="theme-color"]').content = mode === 'dark' ? '#000000' : '#f7f5f0';
+    })();
+  </script>
+  <link rel="stylesheet" href="/assets/css/style.css?v=20261120a">
+  <script src="/assets/js/main.js?v=20261119b" defer></script>
+</head>
+<body id="top">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <main id="main">
+      <article>
+        <header class="paper-head">
+          <p class="paper-back"><a href="/">Zirui Wang</a></p>
+          <p class="eyebrow">Short paper · ACM SoCC 2026 · Singapore</p>
+          <h1 class="paper-title">When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents</h1>
+          <ul class="paper-authors">
+            <li>Zirui Wang <span>Huawei Edinburgh Research Centre</span></li>
+            <li>Mohamed M. Kassem <span>Independent Researcher</span></li>
+            <li>Adam Barker <span>Huawei Edinburgh Research Centre</span></li>
+          </ul>
+          <div class="text-links">
+            <a href="/assets/when-which-and-what-to-fork.pdf" type="application/pdf">PDF</a>
+            <a href="https://doi.org/10.1145/3828161.3857903">DOI</a>
+            <a href="#cite">Cite</a>
+            <a href="https://acmsocc.org/2026/socc26-program-papers.html#paper-1427">SoCC program</a>
+          </div>
+        </header>
+
+        <section class="section-grid" aria-labelledby="abstract-heading">
+          <header class="section-heading"><h2 id="abstract-heading">Abstract</h2></header>
+          <div class="section-content paper-abstract">
+            <p>Agents built on LLMs are becoming a major workload for inference-serving systems. Because a single attempt often fails, operators run many replicas of the same agent on each task. Each replica, however, is a stateful stream whose context grows over time. When many such streams share an engine, they can exhaust its fixed KV-cache memory and hit the memory wall: the entire batch slows down.</p>
+            <p>We argue that the missing control layer lies at the client: when to start each agent and from what state. We propose a launch policy that paces admission by running leaders first, publishes milestones from their trajectories as checkpoints, and then releases followers by forking from selected checkpoints. On SWE-bench Verified, across more than 200 graded runs, we compare our leader–follower policy with fixed-window launches under the same live-concurrency cap. On our main task, for batches of 64 agents, even when fixed-window uses its fastest tested concurrency cap of 26, our policy reduces batch completion time by 20% and yields 1.36× the solves per lane-hour, with similar mean resolve rates. For a larger batch of 128 agents with a concurrency cap of 32, switching to our policy reduces completion time by 37% and yields 1.7× the solves per lane-hour. These gains come from the complete policy, and the comparisons do not isolate the contributions of checkpoint inheritance and selection. Everything runs client-side on an unmodified engine.</p>
+          </div>
+        </section>
+
+        <section class="section-grid" aria-labelledby="publication-heading">
+          <header class="section-heading"><h2 id="publication-heading">Publication</h2></header>
+          <div class="section-content">
+            <dl class="paper-facts">
+              <dt>Venue</dt>
+              <dd>ACM Symposium on Cloud Computing Volume 2 (SoCC ’26 Vol. 2), 18–20 November 2026, Singapore</dd>
+              <dt>DOI</dt>
+              <dd><a href="https://doi.org/10.1145/3828161.3857903">10.1145/3828161.3857903</a> <span class="paper-note">The link resolves once ACM publishes Volume 2.</span></dd>
+              <dt>Length</dt>
+              <dd>7 pages</dd>
+              <dt>Licence</dt>
+              <dd><a href="https://creativecommons.org/licenses/by/4.0/" rel="license">Creative Commons Attribution 4.0 International</a></dd>
+              <dt>Keywords</dt>
+              <dd>LLM agents, agent forking, inference serving, admission control, leader selection, best-of-N, KV cache, RL rollout</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="section-grid" id="cite" aria-labelledby="cite-heading">
+          <header class="section-heading"><h2 id="cite-heading">Cite</h2></header>
+          <div class="section-content">
+            <p class="paper-cite">Zirui Wang, Mohamed M. Kassem, and Adam Barker. 2026. When, Which, and What to Fork: The Launch-Policy Design Space for LLM Agents. In <em>ACM Symposium on Cloud Computing Volume 2 (SoCC ’26 Vol. 2)</em>, November 18–20, 2026, Singapore, Singapore. ACM, New York, NY, USA, 7 pages. https://doi.org/10.1145/3828161.3857903</p>
+<pre class="bibtex" tabindex="0" aria-label="BibTeX entry"><code>@inproceedings{wang2026fork,
+  author    = {Wang, Zirui and Kassem, Mohamed M. and Barker, Adam},
+  title     = {When, Which, and What to Fork: The Launch-Policy
+               Design Space for {LLM} Agents},
+  booktitle = {ACM Symposium on Cloud Computing Volume 2},
+  series    = {SoCC '26 Vol. 2},
+  year      = {2026},
+  month     = nov,
+  location  = {Singapore, Singapore},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  isbn      = {979-8-4007-2816-7},
+  doi       = {10.1145/3828161.3857903},
+  numpages  = {7}
+}</code></pre>
+          </div>
+        </section>
+      </article>
+    </main>
+    <footer class="footer"><p class="footer-motto">Ad Astra</p><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Dark appearance" aria-pressed="false" hidden><span class="theme-symbol" aria-hidden="true">◐</span></button></footer>
+  </div>
+</body>
+</html>

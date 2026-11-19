@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zirui-w.com/sitemap.xml
